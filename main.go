@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os/exec"
 )
@@ -12,12 +13,18 @@ type SpeedData struct {
 	Ping          string `json:"ping"`
 }
 
+var Data SpeedData
+
 func main() {
+	// Run python file to get information from function doing speed test stuff.
 	cmd := exec.Command("python3", "speed.py")
 	output, err := cmd.Output()
 	if err != nil {
 		fmt.Println("error: ", err)
 	}
 
-	fmt.Println(string(output))
+	err = json.Unmarshal(output, &Data)
+	if err != nil {
+		fmt.Println("error: ", err)
+	}
 }

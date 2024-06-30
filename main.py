@@ -1,15 +1,8 @@
-import speedtest
+from speed import run_test
 
 
-def run_test():
-    st = speedtest.Speedtest()
-
-    st.get_best_server()
-
-    download_speed = st.download() / 1_000_000
-    upload_speed = st.upload() / 1_000_000
-
-    ping = st.results.ping
+def main():
+    download_speed, upload_speed, ping = run_test()
 
     print(f"Download Speed: {download_speed:.2f} Mbps")
     print(f"Upload Speed: {upload_speed:.2f} Mbps")
@@ -17,4 +10,4 @@ def run_test():
 
 
 if __name__ == "__main__":
-    run_test()
+    main()

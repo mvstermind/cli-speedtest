@@ -13,6 +13,7 @@ type SpeedData struct {
 	Ping          string `json:"ping"`
 }
 
+// TODO: find other way to unmarshall json struct without creating this variable
 var Data SpeedData
 
 func UnmarshalJson() *SpeedData {

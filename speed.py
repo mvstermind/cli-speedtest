@@ -1,4 +1,5 @@
 import speedtest
+import json
 
 
 def run_test():
@@ -15,4 +16,11 @@ def run_test():
 
 
 if __name__ == "__main__":
-    run_test()
+    download_speed, upload_speed, ping = run_test()
+    results = {
+        "download_speed": f"{round(download_speed, 2)} Mbps",
+        "upload_speed": f"{round(upload_speed, 2)} Mbps",
+        "ping": f"{round(ping, 2)} ms",
+    }
+
+    print(json.dumps(results))

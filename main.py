@@ -1,3 +1,5 @@
+"""Main part of the code, this is where program execution starts"""
+
 import time
 import sys
 import threading
@@ -5,7 +7,9 @@ import threading
 from speed import run_test
 
 
-def animation_template(stop_event):
+def play_animation(stop_event):
+    """Create amination that will play in the terminal
+    while witing for the speed test result"""
     animation_frames = "|/-\\"
     while not stop_event.is_set():
         for i in range(4):
@@ -21,8 +25,9 @@ def animation_template(stop_event):
 
 
 def main():
+    """Main part of the code"""
     stop_event = threading.Event()
-    animation_thread = threading.Thread(target=animation_template, args=(stop_event,))
+    animation_thread = threading.Thread(target=play_animation, args=(stop_event,))
 
     animation_thread.start()
 

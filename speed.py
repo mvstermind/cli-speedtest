@@ -1,18 +1,23 @@
-import speedtest
+"""Module responsible for performing speedtest and returning output
+to the main part of the code"""
+
 import json
+import speedtest
 
 
 def run_test():
+    """Performs speedtest
+    returns download_speed: float, upload_speed: float, ping: float"""
     st = speedtest.Speedtest()
 
     st.get_best_server()
 
-    download_speed = st.download() / 1_000_000
-    upload_speed = st.upload() / 1_000_000
+    result_download_speed = st.download() / 1_000_000
+    result_upload_speed = st.upload() / 1_000_000
 
-    ping = st.results.ping
+    result_ping = st.results.ping
 
-    return (download_speed, upload_speed, ping)
+    return (result_download_speed, result_upload_speed, result_ping)
 
 
 if __name__ == "__main__":
